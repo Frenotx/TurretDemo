@@ -5,51 +5,72 @@
 		<title>Turret Demonstration</title>
 	</head>
 	<body>
-		
 		<center>
-		<form name=form>
-		<table border=1 cellpadding=2>
-		<tr>
-		<td colspan=2 align=center><b>Turret Demonstration</b><br>Use the arrow keys to move the target. Hold x to stop. Hold z to pause.</td>
-		</tr>
-		<tr>
-		<td>
-		<center><table border=1 width=100% cellpadding=2>
-		<tr>
-		<td align=center><b>Max Turret Acceleration</b></td>
-		<td align=center><input type=text size=6 name="turAcc" value=100></td>
-		</tr>
-		<tr>
-		<td align=center><b>Turret Degree Error</b></td>
-		<td align=center><input type=text size=6 name="turErr" value=1.5></td>
-		</tr>
-		<tr>
-		<td align=center><b>Turret RoF (0-10)</b></td>
-		<td align=center><input type=text size=6 name="turRoF" value=10></td>
-		</tr>
-		</table>
-		</td>
-		<td>
-		<center><table border=1 width=100% cellpadding=2>
-		<tr>
-		<td colspan=2 align=center>
-		<input type=button value="Adjust" onClick="engage(this.form)"></td>
-		</tr>
-		<tr>
-		<td align=center><b>Target Max Speed</b></td>
-		<td align=center><input type=text size=6 name="tarSpe" value=300></td>
-		</tr>
-		<tr>
-		<td align=center><b>Target Acceleration</b></td>
-		<td align=center><input type=text size=6 name="tarAcc" value=200></td>
-		</tr>
-		</table>
-		</td>
-		</tr>
-		</table>
-		</form>
+			<form name=form>
+				<table border=1 cellpadding=2>
+					<tr>
+						<td colspan=2 align=center><b>Turret Demonstration</b><br>Use the arrow keys to move the target. Hold x to stop. Hold z to pause.</td>
+					</tr>
+					<tr>
+						<td>
+							<center>
+								<table border=1 width=100% cellpadding=2>
+									<tr>
+										<td align=center>
+											<b>Max Turret Acceleration</b>
+										</td>
+										<td align=center>
+											<input type=text size=6 name="turAcc" value=100>
+										</td>
+									</tr>
+									<tr>
+										<td align=center>
+											<b>Turret Degree Error</b>
+										</td>
+										<td align=center>
+											<input type=text size=6 name="turErr" value=1.5>
+										</td>
+									</tr>
+									<tr>
+										<td align=center>
+											<b>Turret RoF (0-10)</b>
+										</td>
+										<td align=center>
+											<input type=text size=6 name="turRoF" value=10>
+										</td>
+									</tr>
+								</table>
+						</td>
+						<td>
+							<center>
+								<table border=1 width=100% cellpadding=2>
+									<tr>
+										<td colspan=2 align=center>
+											<input type=button value="Adjust" onClick="engage(this.form)">
+										</td>
+									</tr>
+									<tr>
+										<td align=center>
+											<b>Target Max Speed</b>
+										</td>
+										<td align=center>
+											<input type=text size=6 name="tarSpe" value=300>
+										</td>
+									</tr>
+									<tr>
+										<td align=center>
+											<b>Target Acceleration</b>
+										</td>
+										<td align=center>
+											<input type=text size=6 name="tarAcc" value=200>
+										</td>
+									</tr>
+							</table>
+						</td>
+					</tr>				
+				</table>
+			</form>
 		</center>
 		<script src="js/game.js"></script>
-		
 	</body>
 </html>

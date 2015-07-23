@@ -4,14 +4,13 @@ function toRadians (angle)
 {
   return angle * (Math.PI / 180);
 }
-
 function toDegrees (angle)
 {
 	return angle * (180 / Math.PI);
 }
 function threeSixtyFy(inAngle)
 {
-	var outAngle = inAngle
+	var outAngle = inAngle;
 	if(outAngle < 0)
 	{
 		outAngle += 360;
@@ -23,6 +22,21 @@ function threeSixtyFy(inAngle)
 	return outAngle;
 }
 
+function Vector(startingMagnitude, startingAngle)
+{
+	var angle = startingAngle;
+	var magnitude = startingMagnitude;
+	
+	this.getXComponent = function()
+	{
+		return magnitude * Math.cos(angle);
+	};
+	
+	this.getYComponent = function()
+	{
+		
+	};
+}
 
 function MovingTarget(startingX, startingY, minimumX, minimumY, maximumX, maximumY, dotRadius, bounceEffeciency, acceleration, maximumSpeed)
 {
@@ -43,81 +57,58 @@ function MovingTarget(startingX, startingY, minimumX, minimumY, maximumX, maximu
 	this.getXPos = function()
 	{
 		return xPos;
-	}
+	};
 	this.getYPos = function()
 	{
 		return yPos;
-	}
+	};
 	this.getXSpeed = function()
 	{
 		return xSpeed;
-	}
+	};
 	this.getYSpeed = function()
 	{
 		return ySpeed;
-	}
+	};
 	this.getAcceleration = function()
 	{
 		return accel;
-	}
+	};
 	this.getBounceCoefficient = function()
 	{
 		return bounceCoef;
-	}
+	};
 	this.getMaxSpeed = function()
 	{
 		return maxSpeed;
-	}
+	};
 	this.getRadius = function()
 	{
 		return radius;
-	}
+	};
 	
 	//Setters
 	this.setXSpeed = function(newXSpeed)
 	{
 		xSpeed = newXSpeed;
-	}
+	};
 	this.setYSpeed = function(newYSpeed)
 	{
 		ySpeed = newYSpeed;
-	}
+	};
 	this.setMaxAcceleration = function(newMax)
 	{
 		accel = newMax;
-	}
+	};
 	this.setMaxSpeed = function(newMax)
 	{
 		maxSpeed = newMax;
-	}
+	};
 	
 	//Logic
-	function toRadians (angle)
-	{
-	  return angle * (Math.PI / 180);
-	}
-
-	function toDegrees (angle)
-	{
-		return angle * (180 / Math.PI);
-	}
-	function threeSixtyFy(inAngle)
-	{
-		var outAngle = inAngle
-		if(outAngle < 0)
-		{
-			outAngle += 360;
-		}
-		while(outAngle > 360)
-		{
-			outAngle -= 360;
-		}
-		return outAngle;
-	}
-
 	this.getSpeed = function()
 	{
-		if(xSpeed == 0 && ySpeed == 0)
+		if(xSpeed === 0 && ySpeed === 0)
 		{
 			return 0;
 		}
@@ -125,7 +116,7 @@ function MovingTarget(startingX, startingY, minimumX, minimumY, maximumX, maximu
 		{
 			return Math.sqrt(Math.pow(xSpeed,2) + Math.pow(ySpeed,2));
 		}
-	}
+	};
 	
 	this.limitSpeed = function()
 	{	//Check if it's too fast
@@ -136,7 +127,7 @@ function MovingTarget(startingX, startingY, minimumX, minimumY, maximumX, maximu
 			xSpeed = xSpeed * speedLimiter;
 			ySpeed = ySpeed * speedLimiter;
 		}
-	}
+	};
 	
 	this.updatePos = function(timePassed)
 	{
@@ -168,7 +159,7 @@ function MovingTarget(startingX, startingY, minimumX, minimumY, maximumX, maximu
 			ySpeed = ySpeed * -bounceCoef;
 			xSpeed = xSpeed * bounceCoef;
 		}
-	}
+	};
 	
 	this.getVelocityAngle = function()
 	{
@@ -178,7 +169,7 @@ function MovingTarget(startingX, startingY, minimumX, minimumY, maximumX, maximu
 			moveAngle += 180;
 		}
 		return threeSixtyFy(moveAngle);
-	}
+	};
 	
 	//Thrust
 	this.thrustUp = function(timePassed)
@@ -186,22 +177,22 @@ function MovingTarget(startingX, startingY, minimumX, minimumY, maximumX, maximu
 		ySpeed -= accel * timePassed;
 		// this.limitSpeed();
 		ctx.strokeText("out", 20, 240);
-	}
+	};
 	this.thrustDown = function(timePassed)
 	{
 		ySpeed += accel * timePassed;
 		// this.limitSpeed();
-	}
+	};
 	this.thrustLeft = function(timePassed)
 	{
 		xSpeed -= accel * timePassed;
 		// this.limitSpeed();
-	}
+	};
 	this.thrustRight = function(timePassed)
 	{
 		xSpeed += accel * timePassed;
 		// this.limitSpeed();
-	}
+	};
 	this.thrustStop = function(timePassed)
 	{
 		if(this.getSpeed() <= accel * timePassed)
@@ -220,10 +211,9 @@ function MovingTarget(startingX, startingY, minimumX, minimumY, maximumX, maximu
 			}
 		}
 		// this.limitSpeed();
-	}
+	};
 }
 
-//Create turret object
 function Turret(xPosition, yPosition, gunBaseRadius, gunTipRadius, gunWidthAngle, minimumAngAcceleration, maximumAngularAcceleration, shotsPerSecond, degreesError)
 {
 	var xPos = xPosition;
@@ -247,72 +237,72 @@ function Turret(xPosition, yPosition, gunBaseRadius, gunTipRadius, gunWidthAngle
 	this.getTarget = function()
 	{
 		return target;
-	}
+	};
 	this.getGunWidthAngle = function()
 	{
 		return gunWidth;
-	}
+	};
 	this.getGunTipRadius = function()
 	{
 		return gunRadius;
-	}
+	};
 	this.getBaseRadius = function()
 	{
 		return baseRadius;
-	}
+	};
 	this.getMaxAngAcceleration = function()
 	{
 		return maxAngAcceleration;
-	}
+	};
 	this.getMinAngAcceleration = function()
 	{
 		return minAngAcceleration;
-	}
+	};
 	this.getAngVelocity = function()
 	{
 		return angVelocity;
-	}
+	};
 	this.getXPosition = function()
 	{
 		return xPos;
-	}
+	};
 	this.getYPosition = function()
 	{
 		return yPos;
-	}
+	};
 	this.getAngle = function()
 	{
 		return angle;
-	}
+	};
 	
 	//Setters
 	this.setRoF = function(newRoF)
 	{
 		rOf = newRoF;
-	}
+	};
 	this.setMaxAcceleration = function(newMax)
 	{
 		maxAngAcceleration = newMax;
-	}
+	};
 	this.setDegreeError = function(newErr)
 	{
 		degreesOff = newErr;
-	}
+	};
 	this.setTarget = function(newTarget)
 	{
 		target = newTarget;
 		targetLastAngVelocity = this.getRelativeAngularVelocity();
 		targetAngAcceleration = 0;
-	}
+	};
 	this.setPosition = function(newX, newY)
 	{
 		xPos = newX;
 		yPos = newY;
-	}
+	};
 	this.setAngle = function(toAngle)
 	{
 		angle = threeSixtyFy(toAngle);
-	}
+	};
 	
 	//Drawing
 	this.drawTurret = function()
@@ -349,32 +339,9 @@ function Turret(xPosition, yPosition, gunBaseRadius, gunTipRadius, gunWidthAngle
 		turretPath.arc(xPos, yPos, baseRadius ,toRadians(angle - gunWidth), toRadians(angle + gunWidth), true);
 		
 		return turretPath;
-	}
+	};
 	
-	//Logic
-	function toRadians (angle)
-	{
-	  return angle * (Math.PI / 180);
-	}
-
-	function toDegrees (angle)
-	{
-		return angle * (180 / Math.PI);
-	}
-	function threeSixtyFy(inAngle)
-	{
-		var outAngle = inAngle
-		if(outAngle < 0)
-		{
-			outAngle += 360;
-		}
-		while(outAngle > 360)
-		{
-			outAngle -= 360;
-		}
-		return outAngle;
-	}
-	
+	//Logic	
 	this.updateTurret = function(timePassed)
 	{
 		angVelocity += curAngAccel * timePassed;
@@ -383,7 +350,7 @@ function Turret(xPosition, yPosition, gunBaseRadius, gunTipRadius, gunWidthAngle
 		targetAngAcceleration = velocityDiff / timePassed;
 		targetLastAngVelocity = this.getRelativeAngularVelocity();
 		secondsSinceLastShot += timePassed;
-	}
+	};
 	
 	this.maxAccelAim = function()
 	{
@@ -458,7 +425,7 @@ function Turret(xPosition, yPosition, gunBaseRadius, gunTipRadius, gunWidthAngle
 			curAngAccel = (angleDelta/Math.abs(angleDelta)) * maxAngAcceleration;// apply full acceleration in the correct direction
 		}
 		ctx.strokeText("AngAccel: " + targetAngAcceleration, 20, 560);
-	}
+	};
 	
 	this.getDesiredAngle = function()
 	{
@@ -469,16 +436,16 @@ function Turret(xPosition, yPosition, gunBaseRadius, gunTipRadius, gunWidthAngle
 		}
 		desiredAngle = threeSixtyFy(desiredAngle);
 		return desiredAngle;
-	}	
-	
-	this.getRelativeVelocityAngle = function()
+	};
+        
+        this.getRelativeVelocityAngle = function()
 	{
 		return threeSixtyFy(this.getDesiredAngle() + threeSixtyFy(360 - target.getVelocityAngle()) - 180);
-	}
+	};
 	
 	this.getRelativePerpVelocity = function()
 	{
-		if(target.getSpeed() == 0)
+		if(target.getSpeed() === 0)
 		{
 			return 0;
 		}
@@ -486,11 +453,11 @@ function Turret(xPosition, yPosition, gunBaseRadius, gunTipRadius, gunWidthAngle
 		{
 			return Math.cos(toRadians(this.getRelativeVelocityAngle() - 90)) * target.getSpeed();
 		}
-	}
+	};
 	
 	this.getRelativeAngularVelocity = function()
 	{
-		if(target.getSpeed() == 0)
+		if(target.getSpeed() === 0)
 		{
 			return 0;
 		}
@@ -500,12 +467,12 @@ function Turret(xPosition, yPosition, gunBaseRadius, gunTipRadius, gunWidthAngle
 			var distanceTo =  this.getDistanceToTarget();
 			return toDegrees(Math.atan(perpVelocity/distanceTo));
 		}
-	}
+	};
 	
 	this.getDistanceToTarget = function()
 	{
 		return Math.sqrt(Math.pow(xPos - target.getXPos(), 2) + Math.pow(yPos - target.getYPos(), 2));
-	}
+	};
 }
 
 
@@ -556,7 +523,7 @@ addEventListener("keyup", function (e) {
 	 turret.setRoF(eval(form.turRoF.value));
 	 targetDrone.setMaxSpeed(eval(form.tarSpe.value));
 	 targetDrone.setMaxAcceleration(eval(form.tarAcc.value));
- }
+ };
 
 // Update game objects
 var update = function (timePassed) {
